@@ -21,11 +21,12 @@ def orderedDitheringBW(name, n = 2):
     cv2.waitKey()
     return img
 
-# Based off: https://en.wikipedia.org/wiki/Ordered_dithering
+# Based off: https://en.wikipedia.org/wiki/Ordered_dithering#Algorithm
 def orderedDithering(name, n = 2):
     img = cv2.imread(name)
     height, width, channels = img.shape
 
+    # Initialize Bayer's Threshold Matrix
     thresh = np.array([[.25, .75], [1.0, .05]])
 
     r = 255/channels
@@ -48,11 +49,16 @@ def findClosestColor(px, values = [0, 128, 255]):
     idx = dist.index(min(dist))
     return values[idx]
 
+# Pattern Dithering
+
 if __name__ == '__main__':
     start_time = time.time()
+
     # orderedDitheringBW('chonk.png')
-    res = orderedDithering('chonk.png')
+    res = orderedDithering('gradient.png')
+
     print(f'--- Time: {time.time()-start_time}sec ---')
+
     cv2.imwrite('dither.png', res)
-    # cv2.imshow('ditha', res)
+    # cv2.imshow('ditheredImage', res)
     # cv2.waitKey()
