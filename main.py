@@ -4,7 +4,7 @@ import cv2
 import os
 import time
 
-# Based off: https://www.visgraf.impa.br/Courses/ip00/proj/Dithering1/ordered_dithering.html
+# Based off of: https://www.visgraf.impa.br/Courses/ip00/proj/Dithering1/ordered_dithering.html
 def orderedDitheringBW(name, n = 2):
     img = cv2.imread(name, 0)
     height, width = img.shape
@@ -21,7 +21,7 @@ def orderedDitheringBW(name, n = 2):
 
     return img
 
-# Based off: https://en.wikipedia.org/wiki/Ordered_dithering#Algorithm
+# Based off of: https://en.wikipedia.org/wiki/Ordered_dithering#Algorithm
 def orderedDithering(name, n = 2):
     img = cv2.imread(name)
     height, width, channels = img.shape
@@ -83,12 +83,9 @@ if __name__ == '__main__':
     args = parser.parse_args()
     name = vars(args)['input path']
 
-    print(os.getcwd() + '/' + __file__)
-
     start_time = time.time()
     res = orderedDithering(name, 2)
     print('Image Created!')
     print(f'--- Elapsed Time: {time.time()-start_time}sec ---')
     cv2.imwrite(f'{os.path.dirname(os.path.realpath(__file__))}/results/dithered_{os.path.basename(name)}', res)
-    #cv2.imshow('ditheredImage', res)
-    #cv2.waitKey()
+
